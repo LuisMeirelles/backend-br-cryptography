@@ -1,9 +1,9 @@
 <?php
 
-use Meirelles\BackendBrCriptografia\Exceptions\InternalServerErrorException;
-use Meirelles\BackendBrCriptografia\Infra\AppException;
-use Meirelles\BackendBrCriptografia\Infra\Request;
-use Meirelles\BackendBrCriptografia\Infra\Router;
+use Meirelles\BackendBrCriptografia\Cryptography\Exceptions\InternalServerErrorException;
+use Meirelles\BackendBrCriptografia\Core\AppException;
+use Meirelles\BackendBrCriptografia\Core\Request;
+use Meirelles\BackendBrCriptografia\Core\Router;
 
 require 'vendor/autoload.php';
 
@@ -25,4 +25,6 @@ try {
     $response = (new InternalServerErrorException(previous: $throwable))->handleResponse();
 }
 
-echo json_encode($response);
+if ($response !== null) {
+    echo json_encode($response);
+}

@@ -9,6 +9,7 @@
   "require": {
     "php": "^8.3",
     "ext-http": "*",
+    "symfony/string": "^7.1",
     "ext-pdo": "*",
     "robmorgan/phinx": "^0.16.4"
   },

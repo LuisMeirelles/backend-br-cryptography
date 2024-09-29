@@ -2,6 +2,6 @@
 
 global $router;
 
-use Meirelles\BackendBrCriptografia\Controllers\EncryptController;
+use Meirelles\BackendBrCriptografia\Cryptography\Controllers\EncryptController;
 
-$router->post('/encrypt', new EncryptController);
+$router->post('/encrypt', new EncryptController());

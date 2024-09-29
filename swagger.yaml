@@ -27,11 +27,11 @@ definitions:
     properties:
       userDocument:
         type: string
-        default: tetstando
+        default: "36140781833"
 
       creditCardToken:
         type: string
-        default: teste
+        default: "abc123"
 
       value:
         type: number

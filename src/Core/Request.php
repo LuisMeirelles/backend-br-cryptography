@@ -1,8 +1,8 @@
 <?php
 
-namespace Meirelles\BackendBrCriptografia\Infra;
+namespace Meirelles\BackendBrCriptografia\Core;
 
-use Meirelles\BackendBrCriptografia\Exceptions\NotImplementedException;
+use Meirelles\BackendBrCriptografia\Cryptography\Exceptions\NotImplementedException;
 
 class Request
 {
@@ -11,7 +11,7 @@ class Request
     private string $uri;
 
     /**
-     * @throws \Meirelles\BackendBrCriptografia\Exceptions\NotImplementedException
+     * @throws \Meirelles\BackendBrCriptografia\Cryptography\Exceptions\NotImplementedException
      */
     public function __construct()
     {

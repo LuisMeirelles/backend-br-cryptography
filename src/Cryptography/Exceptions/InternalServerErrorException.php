@@ -1,8 +1,8 @@
 <?php
 
-namespace Meirelles\BackendBrCriptografia\Exceptions;
+namespace Meirelles\BackendBrCriptografia\Cryptography\Exceptions;
 
-use Meirelles\BackendBrCriptografia\Infra\AppException;
+use Meirelles\BackendBrCriptografia\Core\AppException;
 
 class InternalServerErrorException extends AppException
 {
