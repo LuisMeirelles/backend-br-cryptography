@@ -8,6 +8,11 @@
   },
   "require": {
     "php": "^8.3",
-    "ext-http": "*"
+    "ext-http": "*",
+    "ext-pdo": "*",
+    "robmorgan/phinx": "^0.16.4"
+  },
+  "scripts": {
+    "phinx": "phinx"
   }
 }

@@ -1,10 +1,15 @@
 services:
   php:
-    image: php:8.3-fpm
-    user: ${UID:-1000}:${GID:-1000}
+    build:
+      context: ./.docker/php
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
     volumes:
       - .:/usr/share/nginx/html
     working_dir: /usr/share/nginx/html
+    env_file:
+      - .env
     networks:
       - app-network
 
@@ -31,6 +36,20 @@ services:
       - certbot
     entrypoint: "/bin/sh /usr/share/nginx/wait-for-certbot.sh"
 
+  database:
+    image: mariadb:lts
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MYSQL_USER: $DB_USERNAME
+      MYSQL_PASSWORD: $DB_PASSWORD
+      MYSQL_DATABASE: $DB_DATABASE
+    ports:
+      - '3306:3306'
+    volumes:
+      - 'mysql_data:/var/lib/mysql'
+    networks:
+      - app-network
+
   certbot:
     build:
       context: ./.docker/certbot
@@ -47,16 +66,9 @@ services:
       - .env
     entrypoint: "/bin/sh /usr/local/bin/entrypoint.sh"
 
-  composer:
-    image: composer:2
-    user: ${UID:-1000}:${GID:-1000}
-    volumes:
-      - .:/app
-    tty: true
-
 networks:
   app-network:
-    driver: bridge
 
 volumes:
   certs:
+  mysql_data:
