@@ -3,11 +3,15 @@
 namespace Meirelles\BackendBrCriptografia\Controllers;
 
 use Meirelles\BackendBrCriptografia\Infra\AbstractController;
+use Meirelles\BackendBrCriptografia\Infra\Request;
 
 class EncryptController extends AbstractController
 {
-    public function __invoke(): array
+    /**
+     * @throws \JsonException
+     */
+    public function __invoke(Request $request)
     {
-        return ['ping' => 'pong'];
+        return $request->body();
     }
 }

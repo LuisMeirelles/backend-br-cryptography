@@ -3,7 +3,6 @@
 namespace Meirelles\BackendBrCriptografia\Infra;
 
 use Meirelles\BackendBrCriptografia\Exceptions\NotFoundException;
-use Meirelles\BackendBrCriptografia\Exceptions\NotImplementedException;
 
 class Router
 {
@@ -37,26 +36,14 @@ class Router
      * @throws \Meirelles\BackendBrCriptografia\Exceptions\NotImplementedException
      * @throws \Meirelles\BackendBrCriptografia\Exceptions\NotFoundException
      */
-    public function route(string $method, string $uri): mixed
+    public function dispatch(Request $request): mixed
     {
-        $requestedMethod = HttpMethod::tryFrom($method);
-
-        if ($requestedMethod === null) {
-            throw new NotImplementedException(
-                'The requested method was not implemented',
-                [
-                    'requested' => $method,
-                    'allowed' => HttpMethod::cases()
-                ]
-            );
-        }
-
-        $action = $this->routes[$requestedMethod->value][$uri] ?? null;
+        $action = $this->routes[$request->getMethod()->value][$request->getUri()] ?? null;
 
         if ($action === null) {
             throw new NotFoundException('The requested route was not found');
         }
 
-        return call_user_func($action);
+        return call_user_func($action, $request);
     }
 }
