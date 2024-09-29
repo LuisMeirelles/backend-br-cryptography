@@ -1,0 +1,38 @@
+swagger: "2.0"
+info:
+  title: Cryptography Backend BR
+  description: Title
+  version: 1.0.0
+host: backend-br.criptografia.local
+schemes:
+  - https
+paths:
+  /encrypt:
+    post:
+      summary: Store infos encrypting `userDocument` and `creditCardToken` data
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/StoreUserInfoBody'
+
+      responses:
+        '200':
+          description: Successful operation
+
+definitions:
+  StoreUserInfoBody:
+    type: object
+    properties:
+      userDocument:
+        type: string
+        default: tetstando
+
+      creditCardToken:
+        type: string
+        default: teste
+
+      value:
+        type: number
+        default: 5999
