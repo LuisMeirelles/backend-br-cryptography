@@ -8,7 +8,7 @@ services:
         GID: ${GID:-1000}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.apache.rule=Host(`backend-br.cryptography.docker.local`)"
+      - "traefik.http.routers.apache.rule=Host(`${SERVER_NAME}`)"
       - "traefik.http.routers.apache.entrypoints=websecure"
       - "traefik.http.routers.apache.tls=true"
     volumes:
