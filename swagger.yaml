@@ -3,7 +3,7 @@ info:
   title: Cryptography Backend BR
   description: Title
   version: 1.0.0
-host: backend-br.criptografia.local
+host: backend-br.cryptography.docker.local
 schemes:
   - https
 paths:
@@ -20,6 +20,8 @@ paths:
       responses:
         '200':
           description: Successful operation
+        '418':
+          description: Bruxaria
 
 definitions:
   StoreUserInfoBody:
