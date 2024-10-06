@@ -38,25 +38,31 @@ class EnvLoader
         $reflectionProperties = $reflectionClass->getProperties(ReflectionProperty::IS_PUBLIC);
 
         foreach ($reflectionProperties as $reflectionProperty) {
+            $propertyName = $reflectionProperty->getName();
+
+            $variableName = preg_replace('/([A-Z])/', '_$1', $propertyName);
+            $variableName = mb_convert_case($variableName, MB_CASE_UPPER);
+
+            $value = getenv($variableName);
+
+            if ($value === false && !$reflectionProperty->getType()->allowsNull()) {
+                throw new AppException("The environment variable `$variableName` is required");
+            }
+
+            $value = $value ?: null;
+
+            self::castType($value, $reflectionProperty, $environment);
+
             /** @var ReflectionAttribute<EnvValidator>[] $reflectionAttributes */
             $reflectionAttributes = $reflectionProperty->getAttributes(EnvValidator::class, ReflectionAttribute::IS_INSTANCEOF);
 
             foreach ($reflectionAttributes as $reflectionAttribute) {
                 $attribute = $reflectionAttribute->newInstance();
-                $variableName = preg_replace('/([A-Z])/', '_$1', $reflectionProperty->getName());
-                $variableName = mb_convert_case($variableName, MB_CASE_UPPER);
 
-                $value = getenv($variableName);
-
-                if ($value !== false) {
-                    $attribute->value = $value;
-                }
-
-                $attribute->name = $reflectionProperty->getName();
+                $attribute->value = $value;
+                $attribute->name = $propertyName;
 
                 $attribute->validate();
-
-                self::castType($value, $reflectionProperty, $environment);
             }
         }
     }
@@ -64,11 +70,16 @@ class EnvLoader
     /**
      * @throws \Meirelles\BackendBrCriptografia\Core\AppException
      */
-    private static function castType(string $value, ReflectionProperty $reflectionProperty, Env $environment): void
+    private static function castType(?string $value, ReflectionProperty $reflectionProperty, Env $environment): void
     {
+        if ($value === null) {
+            $reflectionProperty->setValue($environment, null);
+            return;
+        }
+
         $type = $reflectionProperty->getType();
 
-        switch ($type) {
+        switch ($type->getName()) {
             case 'int':
                 $reflectionProperty->setValue($environment, (int)$value);
                 break;
