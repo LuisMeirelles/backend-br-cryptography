@@ -1,8 +1,8 @@
 <?php
 
-namespace Meirelles\BackendBrCriptografia\Core;
+namespace Meirelles\BackendBrCryptography\Core;
 
-use Meirelles\BackendBrCriptografia\Cryptography\Exceptions\NotFoundException;
+use Meirelles\BackendBrCryptography\Cryptography\Exceptions\NotFoundException;
 
 class Router
 {
@@ -33,8 +33,8 @@ class Router
     }
 
     /**
-     * @throws \Meirelles\BackendBrCriptografia\Cryptography\Exceptions\NotImplementedException
-     * @throws \Meirelles\BackendBrCriptografia\Cryptography\Exceptions\NotFoundException
+     * @throws \Meirelles\BackendBrCryptography\Cryptography\Exceptions\NotImplementedException
+     * @throws \Meirelles\BackendBrCryptography\Cryptography\Exceptions\NotFoundException
      */
     public function dispatch(Request $request): mixed
     {

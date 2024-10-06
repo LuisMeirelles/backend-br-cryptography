@@ -1,8 +1,8 @@
 <?php
 
-namespace Meirelles\BackendBrCriptografia\Core;
+namespace Meirelles\BackendBrCryptography\Core;
 
-use Meirelles\BackendBrCriptografia\Env;
+use Meirelles\BackendBrCryptography\Env;
 use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionProperty;
@@ -10,7 +10,7 @@ use ReflectionProperty;
 class EnvLoader
 {
     /**
-     * @throws \Meirelles\BackendBrCriptografia\Core\AppException
+     * @throws \Meirelles\BackendBrCryptography\Core\AppException
      */
     public function __construct()
     {
@@ -19,7 +19,7 @@ class EnvLoader
 
     /**
      * @return void
-     * @throws \Meirelles\BackendBrCriptografia\Core\AppException
+     * @throws \Meirelles\BackendBrCryptography\Core\AppException
      */
     public static function init(): void
     {
@@ -28,7 +28,7 @@ class EnvLoader
 
     /**
      * @return void
-     * @throws \Meirelles\BackendBrCriptografia\Core\AppException
+     * @throws \Meirelles\BackendBrCryptography\Core\AppException
      */
     private static function validateVars(): void
     {
@@ -68,7 +68,7 @@ class EnvLoader
     }
 
     /**
-     * @throws \Meirelles\BackendBrCriptografia\Core\AppException
+     * @throws \Meirelles\BackendBrCryptography\Core\AppException
      */
     private static function castType(?string $value, ReflectionProperty $reflectionProperty, Env $environment): void
     {

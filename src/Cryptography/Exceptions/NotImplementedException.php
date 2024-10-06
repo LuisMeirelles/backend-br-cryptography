@@ -1,8 +1,8 @@
 <?php
 
-namespace Meirelles\BackendBrCriptografia\Cryptography\Exceptions;
+namespace Meirelles\BackendBrCryptography\Cryptography\Exceptions;
 
-use Meirelles\BackendBrCriptografia\Core\AppException;
+use Meirelles\BackendBrCryptography\Core\AppException;
 
 class NotImplementedException extends AppException
 {

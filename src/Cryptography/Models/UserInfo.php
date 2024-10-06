@@ -1,8 +1,8 @@
 <?php
 
-namespace Meirelles\BackendBrCriptografia\Cryptography\Models;
+namespace Meirelles\BackendBrCryptography\Cryptography\Models;
 
-use Meirelles\BackendBrCriptografia\Core\Model;
+use Meirelles\BackendBrCryptography\Core\Model;
 
 class UserInfo extends Model
 {

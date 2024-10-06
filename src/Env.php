@@ -1,8 +1,8 @@
 <?php
 
-namespace Meirelles\BackendBrCriptografia;
+namespace Meirelles\BackendBrCryptography;
 
-use Meirelles\BackendBrCriptografia\Core\BaseEnv;
+use Meirelles\BackendBrCryptography\Core\BaseEnv;
 
 class Env extends BaseEnv
 {

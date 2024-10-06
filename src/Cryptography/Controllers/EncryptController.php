@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Meirelles\BackendBrCriptografia\Cryptography\Controllers;
+namespace Meirelles\BackendBrCryptography\Cryptography\Controllers;
 
-use Meirelles\BackendBrCriptografia\Core\AbstractController;
-use Meirelles\BackendBrCriptografia\Core\Request;
-use Meirelles\BackendBrCriptografia\Cryptography\Models\UserInfo;
+use Meirelles\BackendBrCryptography\Core\AbstractController;
+use Meirelles\BackendBrCryptography\Core\Request;
+use Meirelles\BackendBrCryptography\Cryptography\Models\UserInfo;
 
 class EncryptController extends AbstractController
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Meirelles\BackendBrCriptografia\Core;
+namespace Meirelles\BackendBrCryptography\Core;
 
 enum HttpMethod: string
 {
