@@ -1,9 +1,10 @@
 <?php
 
-use Meirelles\BackendBrCriptografia\Cryptography\Exceptions\InternalServerErrorException;
 use Meirelles\BackendBrCriptografia\Core\AppException;
+use Meirelles\BackendBrCriptografia\Core\EnvLoader;
 use Meirelles\BackendBrCriptografia\Core\Request;
 use Meirelles\BackendBrCriptografia\Core\Router;
+use Meirelles\BackendBrCriptografia\Cryptography\Exceptions\InternalServerErrorException;
 
 require 'vendor/autoload.php';
 
@@ -17,6 +18,7 @@ $uri = $_SERVER['REQUEST_URI'];
 header('Content-Type: application/json');
 
 try {
+    EnvLoader::init();
     $request = new Request();
     $response = $router->dispatch($request);
 } catch (AppException $e) {
