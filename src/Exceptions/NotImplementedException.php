@@ -1,6 +1,6 @@
 <?php
 
-namespace Meirelles\BackendBrCryptography\Cryptography\Exceptions;
+namespace Meirelles\BackendBrCryptography\Exceptions;
 
 use Meirelles\BackendBrCryptography\Core\AppException;
 

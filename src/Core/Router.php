@@ -2,7 +2,7 @@
 
 namespace Meirelles\BackendBrCryptography\Core;
 
-use Meirelles\BackendBrCryptography\Cryptography\Exceptions\NotFoundException;
+use Meirelles\BackendBrCryptography\Exceptions\NotFoundException;
 
 class Router
 {
@@ -44,8 +44,8 @@ class Router
     }
 
     /**
-     * @throws \Meirelles\BackendBrCryptography\Cryptography\Exceptions\NotImplementedException
-     * @throws \Meirelles\BackendBrCryptography\Cryptography\Exceptions\NotFoundException
+     * @throws \Meirelles\BackendBrCryptography\Exceptions\NotImplementedException
+     * @throws \Meirelles\BackendBrCryptography\Exceptions\NotFoundException
      */
     public function dispatch(Request $request): mixed
     {

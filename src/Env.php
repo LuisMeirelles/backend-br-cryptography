@@ -14,4 +14,6 @@ class Env extends BaseEnv
     public string $dbUsername;
     public string $dbPassword;
     public string $dbRootPassword;
+    public string $encryptionPassphrase;
+    public string $cypherAlgo;
 }

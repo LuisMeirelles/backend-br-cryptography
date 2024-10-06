@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Meirelles\BackendBrCryptography\Cryptography\Controllers;
+namespace Meirelles\BackendBrCryptography\User\Controllers;
 
 use Meirelles\BackendBrCryptography\Core\AbstractController;
 use Meirelles\BackendBrCryptography\Core\Request;
-use Meirelles\BackendBrCryptography\Cryptography\Models\UserInfo;
+use Meirelles\BackendBrCryptography\User\Models\User;
 
-class EncryptController extends AbstractController
+class CreateUser extends AbstractController
 {
     /**
      * @throws \JsonException
@@ -21,7 +21,7 @@ class EncryptController extends AbstractController
         $creditCardToken = $params->creditCardToken;
         $value = $params->value;
 
-        $userInfo = new UserInfo(
+        $userInfo = new User(
             $userDocument,
             $creditCardToken,
             $value,

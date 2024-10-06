@@ -2,6 +2,6 @@
 
 global $router;
 
-use Meirelles\BackendBrCryptography\Cryptography\Controllers\EncryptController;
+use Meirelles\BackendBrCryptography\User\Controllers\CreateUser;
 
-$router->post('/encrypt', new EncryptController());
+$router->post('/users', new CreateUser());

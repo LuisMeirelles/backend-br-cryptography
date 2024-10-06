@@ -2,9 +2,10 @@
 
 declare(strict_types=1);
 
+use Phinx\Db\Adapter\MysqlAdapter;
 use Phinx\Migration\AbstractMigration;
 
-final class CreateUserInfoTable extends AbstractMigration
+final class CreateUsersTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -19,10 +20,10 @@ final class CreateUserInfoTable extends AbstractMigration
      */
     public function change(): void
     {
-        $this->table('user_infos')
-            ->addColumn('user_document', 'string', ['limit' => 255])
-            ->addColumn('credit_card_token', 'string', ['limit' => 255])
-            ->addColumn('value', 'biginteger')
+        $this->table('users')
+            ->addColumn('user_document', 'varbinary', ['limit' => 255])
+            ->addColumn('credit_card_token', 'varbinary', ['limit' => 255])
+            ->addColumn('value', 'integer', ['limit' => MysqlAdapter::INT_BIG])
             ->create();
     }
 }

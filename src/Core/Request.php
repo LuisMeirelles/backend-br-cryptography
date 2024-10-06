@@ -2,7 +2,7 @@
 
 namespace Meirelles\BackendBrCryptography\Core;
 
-use Meirelles\BackendBrCryptography\Cryptography\Exceptions\NotImplementedException;
+use Meirelles\BackendBrCryptography\Exceptions\NotImplementedException;
 
 class Request
 {
@@ -12,7 +12,7 @@ class Request
     private object $routeParams;
 
     /**
-     * @throws \Meirelles\BackendBrCryptography\Cryptography\Exceptions\NotImplementedException
+     * @throws \Meirelles\BackendBrCryptography\Exceptions\NotImplementedException
      */
     public function __construct()
     {

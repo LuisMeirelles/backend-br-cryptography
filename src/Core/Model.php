@@ -10,22 +10,14 @@ use Symfony\Component\String\UnicodeString;
 
 class Model implements JsonSerializable
 {
-    protected readonly string $tableName;
-    protected readonly array $properties;
+    private readonly string $tableName;
+    private array $properties;
 
     public function __construct()
     {
         $reflection = new ReflectionClass($this);
-        $className = $reflection->getShortName();
 
-        $snakeCaseName = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $className));
-
-        $inflector = new EnglishInflector();
-        $pluralized = $inflector->pluralize($snakeCaseName)[0];
-
-        $this->tableName = $pluralized;
-
-        $propertiesReflections = $reflection->getProperties(ReflectionProperty::IS_PUBLIC);
+        $propertiesReflections = $reflection->getProperties(ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED);
 
         $properties = [];
 
@@ -41,6 +33,15 @@ class Model implements JsonSerializable
         }
 
         $this->properties = $properties;
+
+        $className = $reflection->getShortName();
+
+        $snakeCaseName = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $className));
+
+        $inflector = new EnglishInflector();
+        $pluralized = $inflector->pluralize($snakeCaseName)[0];
+
+        $this->tableName = $pluralized;
     }
 
     public function save(): void
@@ -76,8 +77,25 @@ class Model implements JsonSerializable
         return $this->properties;
     }
 
+    /**
+     * @throws \Meirelles\BackendBrCryptography\Core\AppException
+     */
     public function jsonSerialize(): array
     {
-        return $this->toArray();
+        $properties = $this->toArray();
+
+        $propertyNames = array_keys($properties);
+
+        foreach ($propertyNames as $propertyName) {
+            $getterName = 'get' . ucfirst($propertyName);
+
+            if (!method_exists($this, $getterName)) {
+                throw new AppException("Getter method `" . static::class . "::$getterName()` not found.");
+            }
+
+            $properties[$propertyName] = call_user_func([$this, $getterName]);
+        }
+
+        return $properties;
     }
 }
