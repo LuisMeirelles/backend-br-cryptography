@@ -6,20 +6,16 @@ use Meirelles\BackendBrCryptography\Cryptography\Exceptions\NotFoundException;
 
 class Router
 {
-    private static ?Router $instance = null;
+    use Singleton;
+
+    /** @var array<string, array<string, callable>> $routes */
     private array $routes = [];
+
+    private DynamicRouteMatcher $dynamicRouteMatcher;
 
     private function __construct()
     {
-    }
-
-    public static function getInstance(): Router
-    {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
+        $this->dynamicRouteMatcher = new DynamicRouteMatcher();
     }
 
     public function register(string $uri, AbstractController $action, HttpMethod $method): void
@@ -32,13 +28,33 @@ class Router
         $this->register($uri, $action, HttpMethod::POST);
     }
 
+    public function get(string $uri, AbstractController $action): void
+    {
+        $this->register($uri, $action, HttpMethod::GET);
+    }
+
+    public function put(string $uri, AbstractController $action): void
+    {
+        $this->register($uri, $action, HttpMethod::PUT);
+    }
+
+    public function delete(string $uri, AbstractController $action): void
+    {
+        $this->register($uri, $action, HttpMethod::DELETE);
+    }
+
     /**
      * @throws \Meirelles\BackendBrCryptography\Cryptography\Exceptions\NotImplementedException
      * @throws \Meirelles\BackendBrCryptography\Cryptography\Exceptions\NotFoundException
      */
     public function dispatch(Request $request): mixed
     {
-        $action = $this->routes[$request->getMethod()->value][$request->getUri()] ?? null;
+        $httpMethod = $request->getMethod();
+        $routesByHttpMethod = $this->routes[$httpMethod->value];
+
+        $action = $this->dynamicRouteMatcher->match($request, $routesByHttpMethod);
+
+        $action ??= $routesByHttpMethod[$request->getUri()] ?? null;
 
         if ($action === null) {
             throw new NotFoundException('The requested route was not found');
