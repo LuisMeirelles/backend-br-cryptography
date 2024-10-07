@@ -1,7 +1,8 @@
 <?php
 
-namespace Meirelles\BackendBrCryptography\Core;
+namespace Meirelles\BackendBrCryptography\Core\Database;
 
+use Meirelles\BackendBrCryptography\Core\Database\Model as T;
 use PDO;
 use PDOStatement;
 use Symfony\Component\String\UnicodeString;
@@ -40,7 +41,7 @@ class Database extends PDO
     }
 
     /**
-     * @template T of Model
+     * @template T of T
      *
      * @param string $sql
      * @param array $params
@@ -61,7 +62,7 @@ class Database extends PDO
     }
 
     /**
-     * @template T of Model
+     * @template T of T
      *
      * @param string $sql
      * @param array $params
@@ -82,7 +83,7 @@ class Database extends PDO
     }
 
     /**
-     * @template T of Model
+     * @template T of T
      *
      * @param class-string<T> $class
      * @return T

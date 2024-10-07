@@ -2,6 +2,7 @@
 
 namespace Meirelles\BackendBrCryptography\Core;
 
+use Meirelles\BackendBrCryptography\Core\Http\HttpMethod;
 use Meirelles\BackendBrCryptography\Exceptions\NotImplementedException;
 
 class Request

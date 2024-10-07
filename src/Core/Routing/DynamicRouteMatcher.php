@@ -1,6 +1,8 @@
 <?php
 
-namespace Meirelles\BackendBrCryptography\Core;
+namespace Meirelles\BackendBrCryptography\Core\Routing;
+
+use Meirelles\BackendBrCryptography\Core\Request;
 
 class DynamicRouteMatcher
 {

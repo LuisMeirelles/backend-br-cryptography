@@ -1,9 +1,9 @@
 <?php
 
 use Meirelles\BackendBrCryptography\Core\AppException;
-use Meirelles\BackendBrCryptography\Core\EnvLoader;
+use Meirelles\BackendBrCryptography\Core\Environment\EnvLoader;
 use Meirelles\BackendBrCryptography\Core\Request;
-use Meirelles\BackendBrCryptography\Core\Router;
+use Meirelles\BackendBrCryptography\Core\Routing\Router;
 use Meirelles\BackendBrCryptography\Exceptions\InternalServerErrorException;
 
 require 'vendor/autoload.php';

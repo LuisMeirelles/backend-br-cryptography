@@ -1,8 +1,9 @@
 <?php
 
-namespace Meirelles\BackendBrCryptography\Core;
+namespace Meirelles\BackendBrCryptography\Core\Database;
 
 use JsonSerializable;
+use Meirelles\BackendBrCryptography\Core\AppException;
 use ReflectionAttribute;
 use ReflectionClass;
 use Symfony\Component\String\Inflector\EnglishInflector;
@@ -34,7 +35,7 @@ class Model implements JsonSerializable
      * @param array $params Associative array of property values to set on the instance.
      * @return static An instance of the model populated with raw values.
      * @throws \ReflectionException If reflection fails during instantiation.
-     * @see \Meirelles\BackendBrCryptography\Core\Database
+     * @see \Meirelles\BackendBrCryptography\Core\Database\Database
      */
     public static function rawInstance(array $params): static
     {

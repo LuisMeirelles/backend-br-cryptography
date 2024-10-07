@@ -2,8 +2,8 @@
 
 namespace Meirelles\BackendBrCryptography\User\Models;
 
-use Meirelles\BackendBrCryptography\Core\Field;
-use Meirelles\BackendBrCryptography\Core\Model;
+use Meirelles\BackendBrCryptography\Core\Database\Field;
+use Meirelles\BackendBrCryptography\Core\Database\Model;
 use Meirelles\BackendBrCryptography\User\Services\SensitiveDataService;
 
 class User extends Model

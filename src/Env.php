@@ -2,7 +2,7 @@
 
 namespace Meirelles\BackendBrCryptography;
 
-use Meirelles\BackendBrCryptography\Core\BaseEnv;
+use Meirelles\BackendBrCryptography\Core\Environment\BaseEnv;
 
 class Env extends BaseEnv
 {

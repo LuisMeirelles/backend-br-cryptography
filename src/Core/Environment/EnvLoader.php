@@ -1,7 +1,8 @@
 <?php
 
-namespace Meirelles\BackendBrCryptography\Core;
+namespace Meirelles\BackendBrCryptography\Core\Environment;
 
+use Meirelles\BackendBrCryptography\Core\AppException;
 use Meirelles\BackendBrCryptography\Env;
 use ReflectionAttribute;
 use ReflectionClass;

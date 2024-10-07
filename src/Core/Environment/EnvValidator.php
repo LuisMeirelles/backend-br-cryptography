@@ -1,6 +1,6 @@
 <?php
 
-namespace Meirelles\BackendBrCryptography\Core;
+namespace Meirelles\BackendBrCryptography\Core\Environment;
 
 use Attribute;
 

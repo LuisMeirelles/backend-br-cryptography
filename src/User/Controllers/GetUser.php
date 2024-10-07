@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Meirelles\BackendBrCryptography\User\Controllers;
 
-use Meirelles\BackendBrCryptography\Core\AbstractController;
+use Meirelles\BackendBrCryptography\Core\Http\AbstractController;
 use Meirelles\BackendBrCryptography\Core\Request;
 use Meirelles\BackendBrCryptography\Exceptions\NotFoundException;
 use Meirelles\BackendBrCryptography\User\Models\User;

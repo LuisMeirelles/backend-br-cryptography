@@ -1,7 +1,11 @@
 <?php
 
-namespace Meirelles\BackendBrCryptography\Core;
+namespace Meirelles\BackendBrCryptography\Core\Routing;
 
+use Meirelles\BackendBrCryptography\Core\Http\AbstractController;
+use Meirelles\BackendBrCryptography\Core\Http\HttpMethod;
+use Meirelles\BackendBrCryptography\Core\Request;
+use Meirelles\BackendBrCryptography\Core\Singleton;
 use Meirelles\BackendBrCryptography\Exceptions\NotFoundException;
 
 class Router
