@@ -2,25 +2,35 @@
 
 namespace Meirelles\BackendBrCryptography\User\Models;
 
+use Meirelles\BackendBrCryptography\Core\Field;
 use Meirelles\BackendBrCryptography\Core\Model;
 use Meirelles\BackendBrCryptography\User\Services\SensitiveDataService;
 
 class User extends Model
 {
-    protected readonly int $id;
-    protected string $userDocument;
-    protected string $creditCardToken;
-
     public function __construct(
-        string $userDocument,
-        string $creditCardToken,
+        #[Field]
+        protected string $userDocument,
+
+        #[Field]
+        protected string $creditCardToken,
+
+        #[Field]
         protected int $value,
+
+        #[Field]
+        protected readonly ?int $id = null,
     )
     {
         $this->setUserDocument($userDocument);
         $this->setCreditCardToken($creditCardToken);
 
         parent::__construct();
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
     }
 
     public function getUserDocument(): string

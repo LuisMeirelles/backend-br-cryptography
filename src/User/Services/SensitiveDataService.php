@@ -22,16 +22,20 @@ class SensitiveDataService
 
         $ivlen = openssl_cipher_iv_length($cypher_algo);
         $iv = openssl_random_pseudo_bytes($ivlen);
-        $cyphertext = openssl_encrypt($data, $cypher_algo, self::getPassphrase(), iv: $iv);
+
+        $cyphertext = openssl_encrypt($data, $cypher_algo, self::getPassphrase(), OPENSSL_RAW_DATA, $iv);
 
         return $iv . $cyphertext;
     }
 
     public function decrypt($cyphertext): false|string
     {
-        $iv = substr($cyphertext, 0, 16);
-        $cyphertext = substr($cyphertext, 16);
+        $cypher_algo = self::getCypherAlgo();
+        $ivlen = openssl_cipher_iv_length($cypher_algo);
+        $iv = substr($cyphertext, 0, $ivlen);
 
-        return openssl_decrypt($cyphertext, self::getCypherAlgo(), self::getPassphrase(), iv: $iv);
+        $cyphertext = substr($cyphertext, $ivlen);
+
+        return openssl_decrypt($cyphertext, self::getCypherAlgo(), self::getPassphrase(), true, $iv);
     }
 }
