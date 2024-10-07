@@ -3,6 +3,7 @@
 namespace Meirelles\BackendBrCryptography\Core\Database;
 
 use Meirelles\BackendBrCryptography\Core\Database\Model as T;
+use Meirelles\BackendBrCryptography\Env;
 use PDO;
 use PDOStatement;
 use Symfony\Component\String\UnicodeString;
@@ -13,10 +14,12 @@ class Database extends PDO
 
     private function __construct()
     {
-        $host = getenv('DB_HOST');
-        $database = getenv('DB_DATABASE');
-        $username = getenv('DB_USERNAME');
-        $password = getenv('DB_PASSWORD');
+        $env = Env::getInstance();
+
+        $host = $env->dbHost;
+        $database = $env->dbDatabase;
+        $username = $env->dbUsername;
+        $password = $env->dbPassword;
 
         parent::__construct("mysql:host=$host;dbname=$database", $username, $password);
 

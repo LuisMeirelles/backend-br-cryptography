@@ -2,7 +2,9 @@
 
 namespace Meirelles\BackendBrCryptography\Core\Environment;
 
+use BackedEnum;
 use Meirelles\BackendBrCryptography\Core\AppException;
+use Meirelles\BackendBrCryptography\Core\Environment\Validators\EnvValidator;
 use Meirelles\BackendBrCryptography\Env;
 use ReflectionAttribute;
 use ReflectionClass;
@@ -80,21 +82,28 @@ class EnvLoader
 
         $type = $reflectionProperty->getType();
 
-        switch ($type->getName()) {
-            case 'int':
-                $reflectionProperty->setValue($environment, (int)$value);
-                break;
-            case 'bool':
-                $reflectionProperty->setValue($environment, (bool)$value);
-                break;
-            case 'float':
-                $reflectionProperty->setValue($environment, (float)$value);
-                break;
-            case 'string':
-                $reflectionProperty->setValue($environment, $value);
-                break;
-            default:
-                throw new AppException('Type not supported');
+        $typeName = $type->getName();
+
+        if (is_a($typeName, BackedEnum::class, true)) {
+            $reflectionProperty->setValue($environment, $typeName::from($value));
+        } else {
+            switch ($typeName) {
+                case 'int':
+                    $reflectionProperty->setValue($environment, (int)$value);
+                    break;
+                case 'bool':
+                    $reflectionProperty->setValue($environment, (bool)$value);
+                    break;
+                case 'float':
+                    $reflectionProperty->setValue($environment, (float)$value);
+                    break;
+                case 'string':
+                    $reflectionProperty->setValue($environment, $value);
+                    break;
+                default:
+                    $propertyName = $reflectionProperty->getName();
+                    throw new AppException("Type `$typeName` not supported for property `$propertyName`");
+            }
         }
     }
 }
