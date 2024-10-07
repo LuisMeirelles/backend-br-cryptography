@@ -21,8 +21,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install pdo pdo_mysql && \
-    pecl install raphf && \
-    docker-php-ext-enable raphf && \
+    pecl install raphf apcu && \
+    docker-php-ext-enable raphf apcu && \
     pecl install pecl_http && \
     docker-php-ext-enable http && \
     a2enmod rewrite

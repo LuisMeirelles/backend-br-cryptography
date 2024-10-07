@@ -12,7 +12,8 @@
     "symfony/string": "^7.1",
     "ext-pdo": "*",
     "robmorgan/phinx": "^0.16.4",
-    "ext-openssl": "*"
+    "ext-openssl": "*",
+    "ext-apcu": "*"
   },
   "scripts": {
     "phinx": "phinx"
